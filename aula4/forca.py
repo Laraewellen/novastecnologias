@@ -1,58 +1,55 @@
-palavras = ["dia"]
-palavra = palavras[0]  # A palavra a ser adivinhada
-resultado = ["_" for _ in palavra]  # Inicializa o resultado com underscores
+import random
 
-# Partes do bonequinho da forca (a ordem das partes conforme solicitado)
-boneco = ["O", "/|", "/|\\", "/ ", "/ \\"]
-erros = 0  # Contador de erros
+palavras = ["banana", "maca", "goiaba", "amora", "jabuticaba"]
 
-# Função para imprimir o boneco a cada erro
-def imprimir_boneco(erros):
-    if erros == 1:
-        print("  " + boneco[0])  # Cabeça
-    elif erros == 2:
-        print("  " + boneco[0])  # Cabeça
-        print(" " + boneco[1])   # Braço esquerdo
-    elif erros == 3:
-        print("  " + boneco[0])  # Cabeça
-        print(" " + boneco[1])   # Braço esquerdo
-        print(" " + boneco[2])   # Braço direito
-    elif erros == 4:
-        print("  " + boneco[0])  # Cabeça
-        print(" " + boneco[1])   # Braço esquerdo
-        print(" " + boneco[2])   # Braço direito
-        print(" " + boneco[3])   # Perna esquerda
-    elif erros == 5:
-        print("  " + boneco[0])  # Cabeça
-        print(" " + boneco[1])   # Braço esquerdo
-        print(" " + boneco[2])   # Braço direito
-        print(" " + boneco[3])   # Perna esquerda
-        print(" " + boneco[4])   # Perna direita
+palavra = random.choice(palavras)
 
-# Função principal do jogo
+resultado = ["_" for _ in palavra]
+
+boneco = [
+    "  _______",
+    " |/      |",
+    " |      \\o/",
+    " |       |",
+    " |      / \\",
+    " |",
+    "_|___"
+]
+erros = 0
+
 while True:
-    # Exibe o estado atual da palavra
-    print(" ".join(resultado))
-    
-    # Solicita o palpite do jogador
+    print("\nPalavra:", " ".join(resultado))
+    print("Erros:", erros)
+    for i in range(erros):
+        print(boneco[i])
+
+    if erros >= len(boneco):
+        print("Você perdeu!")
+        print("A palavra era:", palavra)
+        break
+
     palpite = input("Digite uma letra: ").lower()
 
-    # Verifica se o palpite não está na palavra
+    if len(palpite) != 1 or not palpite.isalpha():
+        print("Por favor, digite uma única letra.")
+        continue
+
+    if palpite in resultado:
+        print("Você já tentou essa letra.")
+        continue
+
     if palpite not in palavra:
+        print("Você errou!")
         erros += 1
-        imprimir_boneco(erros)  # Imprime a parte do boneco
+    else:
+        print("Você acertou uma letra!")
+        for i, letra in enumerate(palavra):
+            if palpite == letra:
+                resultado[i] = letra
 
-    # Atualiza o resultado com a letra correta
-    for i, letra in enumerate(palavra):
-        if palpite == letra:
-            resultado[i] = letra
-
-    # Verifica se o jogador acertou a palavra
-    if resultado == list(palavra):
-        print("Boa! Você acertou a palavra:", palavra)
+    if "_" not in resultado:
+        print("\nPalavra:", " ".join(resultado))
+        print("Parabéns! Você acertou a palavra!")
         break
 
-    # Verifica se o jogador perdeu
-    if erros >= 5:
-        print(f"Você perdeu! A palavra era: {palavra}")
-        break
+print("\nFim do jogo.")
