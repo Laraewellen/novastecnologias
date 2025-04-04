@@ -1,6 +1,6 @@
 frase = input ("digite uma frase: ") .lower()
 
-palavras = frase.rsplit (sep= " ")
+palavras = frase.rsplit (sep= " ") #cada palavra é separada por um espaço
 #versão grande
 """ mapa = {}
 
