@@ -15,3 +15,26 @@ class Contato:
     def nome(self, nome):
         self._nome = nome
 
+    @property
+    def telefone(self):
+        return self._telefone
+
+    @telefone.setter
+    def telefone(self, telefone):
+        self._telefone = telefone
+
+    @property
+    def datanasc(self):
+        return self._datanasc
+
+    @datanasc.setter
+    def datanasc(self, datanasc):
+        self._datanasc = datanasc
+
+    @property
+    def email(self):
+        return self._email
+
+    @email.setter
+    def email(self, email):
+        self._email = email
