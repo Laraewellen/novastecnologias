@@ -32,31 +32,9 @@ Ambiente: Google Colab, Jupyter Notebooks
 
 Bibliotecas: numpy, pandas, matplotlib, pygame, django, keras, scikit-learn
 
-## 🗂️ Estrutura do Repositório
 
-```plaintext
-📁 novastecnologias/
-├── aula1/
-│   └── introducao.py                   # Código introdutório em Python
-│
-├── aula2/
-│   ├── exercicio1.py                   # Atividade prática da segunda aula
-│   └── exercicio2.py                   # Continuação com mais práticas
-│
-├── aula 3/
-│   └── exercicio_colab.ipynb          # Exercícios no Google Colab (Jupyter Notebook)
-│
-├── aula 4/
-│   ├── exercicio2.py                   # Exercício com funções e entrada de dados
-│   └── exercicio3.py                   # Continuação das atividades da aula 4
-│
-├── aula5/
-│   └── atv.py                          # Atividade da aula 5
-│
-├── variaveis&tipoembutido/
-│   └── variaveis.py                    # Prática com tipos embutidos em Python
-│
-├── estruturasdecontrole/
+
+
 │   ├── atividade1.py                   # Exercício com estrutura condicional
 │   └── atividade2.py                   # Exercício com estruturas de repetição
 │
