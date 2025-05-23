@@ -74,8 +74,114 @@ def update_aliens(aliens):
     check_fleet_edges(aliens)
     aliens.update()
     
-            
-            
-            
-        
-        
+def update_bullets(bullets, aliens):
+    bullets.update()
+
+    for bullet in bullets.copy():
+        if bullet.rect.bottom <= 0:
+            bullets.remove(bullet)
+
+    # Verifica colisões entre bullets e aliens
+    pygame.sprite.groupcollide(bullets, aliens, True, True)
+
+def check_ship_collision(ship, aliens, screen):
+    if pygame.sprite.spritecollideany(ship, aliens):
+        show_game_over_screen(screen)
+        return True
+    return False
+
+def show_game_over_screen(screen):
+    font = pygame.font.SysFont(None, 72)
+    small_font = pygame.font.SysFont(None, 48)
+
+    screen.fill((0, 0, 0))
+
+    msg = font.render("Você perdeu!", True, (255, 0, 0))
+    retry = small_font.render("Pressione R para tentar novamente", True, (255, 255, 255))
+    quit_msg = small_font.render("Pressione Q para sair", True, (255, 255, 255))
+
+    screen.blit(msg, (screen.get_width()//2 - msg.get_width()//2, 250))
+    screen.blit(retry, (screen.get_width()//2 - retry.get_width()//2, 350))
+    screen.blit(quit_msg, (screen.get_width()//2 - quit_msg.get_width()//2, 400))
+
+    pygame.display.flip()
+
+    waiting = True
+    while waiting:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_r:
+                    waiting = False  # sai do loop e reinicia o jogo
+                elif event.key == pygame.K_q:
+                    pygame.quit()
+                    sys.exit()
+
+def check_win_condition(aliens, screen):
+    if len(aliens) == 0:
+        font = pygame.font.SysFont(None, 72)
+        small_font = pygame.font.SysFont(None, 48)
+
+        screen.fill((0, 0, 0))
+
+        win_msg = font.render("Você venceu!", True, (0, 255, 0))
+        retry = small_font.render("Pressione R para jogar novamente", True, (255, 255, 255))
+        quit_msg = small_font.render("Pressione Q para sair", True, (255, 255, 255))
+
+        screen.blit(win_msg, (screen.get_width()//2 - win_msg.get_width()//2, 250))
+        screen.blit(retry, (screen.get_width()//2 - retry.get_width()//2, 350))
+        screen.blit(quit_msg, (screen.get_width()//2 - quit_msg.get_width()//2, 400))
+
+        pygame.display.flip()
+
+        waiting = True
+        while waiting:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_r:
+                        waiting = False
+                    elif event.key == pygame.K_q:
+                        pygame.quit()
+                        sys.exit()
+
+        return True  # reiniciar
+    return False  # continuar jogando
+
+def check_win_condition(aliens, screen):
+    if len(aliens) == 0:
+        font = pygame.font.SysFont(None, 72)
+        small_font = pygame.font.SysFont(None, 48)
+
+        screen.fill((0, 0, 0))
+
+        win_msg = font.render("Você venceu!", True, (0, 255, 0))
+        retry = small_font.render("Pressione R para jogar novamente", True, (255, 255, 255))
+        quit_msg = small_font.render("Pressione Q para sair", True, (255, 255, 255))
+
+        screen.blit(win_msg, (screen.get_width()//2 - win_msg.get_width()//2, 250))
+        screen.blit(retry, (screen.get_width()//2 - retry.get_width()//2, 350))
+        screen.blit(quit_msg, (screen.get_width()//2 - quit_msg.get_width()//2, 400))
+
+        pygame.display.flip()
+
+        waiting = True
+        while waiting:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_r:
+                        waiting = False
+                    elif event.key == pygame.K_q:
+                        pygame.quit()
+                        sys.exit()
+
+        return True  # reiniciar
+    return False  # continuar jogando
+
