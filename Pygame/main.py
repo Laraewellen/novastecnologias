@@ -23,8 +23,7 @@ def run_game():
         ship.update()
         gf.update_bullets(bullets, aliens)
         gf.update_aliens(aliens)
-
-        # ⚠️ Essa parte precisa estar dentro do while e depois da criação de 'ship'
+        
         if gf.check_ship_collision(ship, aliens, screen):
             ship = Ship(screen)
             bullets = Group()
